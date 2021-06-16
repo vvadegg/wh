@@ -29,6 +29,7 @@ public class Producer implements Runnable{
             // следующая ячейка
             cell = cell.next();
 
+
             // поспали
             try {
                 Thread.sleep(millis);

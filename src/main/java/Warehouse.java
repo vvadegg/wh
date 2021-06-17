@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -7,6 +10,9 @@ import java.util.Set;
  * Склад.
  */
 public class Warehouse {
+
+    // логгер
+    Logger log = LoggerFactory.getLogger(Warehouse.class);
 
     // Переменная для хранения продуктов по ячейкам
     private Map<Cell, Set<Product>> productByCells = new EnumMap<>(Cell.class);
@@ -26,7 +32,7 @@ public class Warehouse {
     public void put(Cell cell, Product product) {
         synchronized (cell){
             productByCells.get(cell).add(product);
-            System.out.println("Положили товар " + product + " в ячейку " + cell);
+            log.info("Положили товар {} в ячейку {}", product, cell);
         }
     }
 
@@ -39,10 +45,9 @@ public class Warehouse {
         synchronized (cell) {
             Set<Product> products = productByCells.get(cell);
             productByCells.put(cell, new HashSet<>());
-            System.out.println("Возвращаем товары из ячейки " + cell + ": " + products);
+            log.info("Возвращаем товары из ячейки {}: {}", cell, products);
             return products;
         }
     }
-
 
 }

@@ -1,11 +1,19 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Set;
 
 /**
  * Класс, который складывает товары в ячейки.
  */
 public class Consumer implements Runnable {
+
+    // логгер
+    Logger log = LoggerFactory.getLogger(Consumer.class);
+
     // склад
     private final Warehouse warehouse;
+
     // интервал
     private int millis = 1;
 
@@ -24,7 +32,7 @@ public class Consumer implements Runnable {
             // получаем список продуктов из ячейки
             Set<Product> products = warehouse.get(cell);
 
-            System.out.println(products);
+//            System.out.println(products);
 
             // следующая ячейка
             cell = cell.next();

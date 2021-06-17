@@ -1,7 +1,14 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Продукт.
  */
 public class Product {
+
+    // логгер
+    private static Logger log = LoggerFactory.getLogger(Product.class);
+
     /**
      * счетчик идентификатора продукта
      */
@@ -34,6 +41,7 @@ public class Product {
      */
     public static Product create() {
         Product product = new Product(++counter);
+        log.info("Создан новый продукт {}", product);
         return product;
     }
 

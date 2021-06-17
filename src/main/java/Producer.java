@@ -1,10 +1,14 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Класс, который складывает товары в ячейки.
  */
-public class Producer implements Runnable{
+public class Producer implements Runnable {
+
     // склад
     private final Warehouse warehouse;
+
     // интервал
     private int millis = 1000;
 
@@ -29,7 +33,6 @@ public class Producer implements Runnable{
             // следующая ячейка
             cell = cell.next();
 
-
             // поспали
             try {
                 Thread.sleep(millis);
@@ -37,8 +40,6 @@ public class Producer implements Runnable{
                 e.printStackTrace();
             }
         }
-
-
 
     }
 }
